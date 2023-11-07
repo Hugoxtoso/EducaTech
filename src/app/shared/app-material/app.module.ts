@@ -4,16 +4,16 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 
 import { AppComponent } from './app.component';
 import { PrimengModule } from '../primeng.module';
-import { NavBarComponent } from '../../navbar/notusernavbar/notuser-navbar.component'
 import {CadastroProfessorComponent} from '../../cadastro/cadastro-professor/cadastro-professor.component'
 import {CadastroAlunoComponent} from '../../cadastro/cadastro-aluno/cadastro-aluno.component'
 import {LoginComponent} from '../../login/login.component'
 import {SobreComponent} from '../../sobre/sobre.component'
 import {AlunoMainpageComponent} from '../../mainpage/user-mainpage/aluno-mainpage/aluno-mainpage.component'
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from 'primeng/api';
 import { ToastComponent } from '../toast/toast.component';
+import { NavBarModule } from 'src/app/navbar/navbar.module';
 
 
 
@@ -24,7 +24,6 @@ import { ToastComponent } from '../toast/toast.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     CadastroProfessorComponent,
     CadastroAlunoComponent,
     ToastComponent,
@@ -37,7 +36,8 @@ import { ToastComponent } from '../toast/toast.component';
     BrowserAnimationsModule,
     PrimengModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NavBarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

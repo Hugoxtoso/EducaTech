@@ -67,6 +67,9 @@ import { SliderModule } from 'primeng/slider';
 import {SidebarModule} from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { SplitButtonModule } from 'primeng/splitbutton';
+
 
 
 
@@ -141,7 +144,9 @@ import { ToastModule } from 'primeng/toast';
     SliderModule,
     SidebarModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    SpeedDialModule,
+    SplitButtonModule
   ]
 })
 export class PrimengModule { }

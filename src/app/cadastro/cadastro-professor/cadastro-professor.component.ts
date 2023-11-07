@@ -28,11 +28,19 @@ export class CadastroProfessorComponent{
   ];
 
   selectedImagem: string = "";
+  imageNotTouch: boolean = true;
+
+  validarForm(f: NgForm) {
+    if(!f.valid || this.imageNotTouch)
+      return true;
+    return false;
+  }
   
   onSelect(event: any) {
       const file = event.target.files[0];
   
       if (file) {
+        this.imageNotTouch = false;
         const reader = new FileReader();
         reader.onload = (e) => {
           const imageBase64 = e.target?.result as "";

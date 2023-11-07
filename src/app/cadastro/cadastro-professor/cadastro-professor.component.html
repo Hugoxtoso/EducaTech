@@ -65,12 +65,12 @@
                     </div>
                 </div>
                 <div style="width: 100%;" class="flex align-items-center justify-content-center">
-                    <button pButton pRipple label="Cadastrar" [disabled]="!f.valid" type="submit" class="p-button-success"></button>
+                    <button pButton pRipple  label="Cadastrar" [disabled]="validarForm(f)" type="submit" class="p-button-success"></button>
                 </div>
             </div>              
             <div class="div-img">
                 <label for="input-img" class="file-label">Escolha sua foto mais bonita!</label>
-                <input id="input-img" type="file" accept="images/*" required (change)="onSelect($event)"> Required para input imagem
+                <input id="input-img" type="file" accept="images/*" required (change)="onSelect($event)">
                 <div class="bg-img">
                     <img class="std-img" src="data:image/*;base64,{{selectedImagem}}" alt="Pessoa linda" onerror="this.onerror=null; this.src='https:\/\/github.com\/leosmsilvx\/iTonomise\/blob\/main\/src\/main\/webapp\/imgs\/homem.jpg?raw=true'">
                 </div>
