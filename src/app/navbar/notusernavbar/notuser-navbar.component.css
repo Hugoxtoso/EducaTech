@@ -1,0 +1,14 @@
+.botao-margin-sides{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.botao-margin-top{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.actived-nav{
+    background-color: red;
+}

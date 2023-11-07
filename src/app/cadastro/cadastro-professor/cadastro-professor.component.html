@@ -1,0 +1,88 @@
+
+<div class="titulo">Cadastre-se como Professor</div>
+<div class="card">    
+    <form (ngSubmit)="cadastrar(f)" #f="ngForm" class="form">
+        <div class="flex-gap">
+            <div class="div-inputs">        
+                <div class="flex flex-wrap gap-3 mb-5">
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span" >
+                            <input pInputText id="nome" name="nome" ngModel required  class="form-input"/>
+                            <label htmlFor="nome">Nome*</label>
+                        </span>
+                    </div>
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span">
+                            <input pInputText id="email"name="email" ngModel required class="form-input"/>
+                            <label htmlFor="email">Email*</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3 mb-5">
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span">
+                            <p-inputMask  mask="999.999.999-99" name="cpf" ngModel [required]="true" class="form-input" id="cpf"></p-inputMask>
+                            <label htmlFor="cpf">CPF*</label>
+                        </span>
+                    </div>
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span">
+                            <p-inputMask  mask="(99) 99999-9999" name="telefone" ngModel [required]="true" id="telefone" class="form-input" ></p-inputMask>
+                            <label htmlFor="telefone">Telefone*</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3 mb-5">
+                    <span class="p-float-label form-span">
+                        <input pInputText id="endereco" name="endereco" ngModel required class="form-input"/>
+                        <label htmlFor="endereco">Endereço*</label>
+                    </span>
+                </div>
+                <div class="flex flex-wrap gap-3 mb-5">
+                    <span class="p-float-label form-span">
+                        <input pInputText id="faculdade" name="faculdade" ngModel required class="form-input"/>
+                        <label htmlFor="faculdade">Faculdade*</label>
+                    </span>
+                </div>
+                <div class="flex flex-wrap gap-3 mb-5 ">
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span">            
+                            <p-password  class="form-input" id="senha" name="senha" ngModel required [toggleMask]="true" [feedback]="true" [weakLabel]="passweak" [mediumLabel]="passmedium" [strongLabel]="passstrong" [promptLabel]="passdefault"></p-password>
+                            <label htmlFor="senha">Senha*</label>
+                        </span>
+                    </div>
+                    <div class="flex-auto">
+                        <span class="p-float-label form-span">            
+                            <input pInputText id="especializacao" name="especializacao" ngModel required class="form-input"/>
+                            <label htmlFor="especializacao">Especialização*</label>
+                        </span>
+                    </div>           
+                    <div class="flex-auto">
+                        <span class="form-span">                   
+                            <p-selectButton [options]="disponibilidade" name="disponibilidade" ngModel required class="disponibilidade" [multiple]="true" optionLabel="name" optionValue="value"></p-selectButton>  
+                            <label class=" block mb-2">Disponibilidade*</label>
+                        </span>
+                    </div>
+                </div>
+                <div style="width: 100%;" class="flex align-items-center justify-content-center">
+                    <button pButton pRipple label="Cadastrar" [disabled]="!f.valid" type="submit" class="p-button-success"></button>
+                </div>
+            </div>              
+            <div class="div-img">
+                <label for="input-img" class="file-label">Escolha sua foto mais bonita!</label>
+                <input id="input-img" type="file" accept="images/*" required (change)="onSelect($event)"> Required para input imagem
+                <div class="bg-img">
+                    <img class="std-img" src="data:image/*;base64,{{selectedImagem}}" alt="Pessoa linda" onerror="this.onerror=null; this.src='https:\/\/github.com\/leosmsilvx\/iTonomise\/blob\/main\/src\/main\/webapp\/imgs\/homem.jpg?raw=true'">
+                </div>
+            </div>          
+        </div>        
+    </form>
+</div>
+
+
+
+
+
+
+
+

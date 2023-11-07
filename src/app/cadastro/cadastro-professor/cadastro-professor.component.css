@@ -1,0 +1,44 @@
+.card{
+    width: 72%;
+    margin: 2% 14% 0 14%;
+}
+
+.form-span{
+    width: 100%;
+}
+::ng-deep .form-input .p-inputmask {
+    width: 100%;
+}
+
+
+.form-input {
+    width: 100%;
+}
+
+
+.titulo{
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    margin-top: 2%;
+
+}
+.form{
+    width: 100%;
+    height: 100%;
+
+}
+
+.div-img{
+    width: 410px;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.flex-gap{
+    display: flex;
+    gap: 40px;
+}

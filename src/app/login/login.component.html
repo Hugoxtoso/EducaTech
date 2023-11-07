@@ -1,0 +1,35 @@
+
+<div class="titulo">Login</div>
+<div class="card">
+
+    <form (ngSubmit)="onSubmit(formLogin)" #formLogin="ngForm" class="form">
+        <div class="flex flex-wrap gap-3 mb-5">
+            <span class="p-float-label form-span">
+                <input pInputText id="email" name="user" ngModel #emailRef="ngModel" required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-input" pTooltip="{{!emailRef.valid && emailRef.touched ? 'Email inválido' : ''}}"/>
+                <label htmlFor="email">Email</label>
+            </span>
+
+        </div>
+        <div class="flex flex-wrap gap-3 mb-5">
+            <span class="p-float-label form-span">
+                <input pInputText id="senha" name="pass" ngModel required type="password" class="form-input"/>
+                <label htmlFor="senha">Senha</label>
+            </span>
+        </div>
+
+        <div style="width: 100%;" class="flex align-items-center justify-content-center">
+            <button pButton pRipple label="logar" type="submit" class="p-button-success" [disabled]="!formLogin.valid"></button>
+        </div>       
+        <div style="width: 100%;" class="flex align-items-center justify-content-center">
+            <button pButton pRipple label="penis" type="button" class="p-button-danger" (click)="teste()"></button>
+        </div>         
+    </form>
+</div>
+
+
+
+
+
+
+
+

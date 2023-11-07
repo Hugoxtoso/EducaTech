@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'primeflex/primeflex.css';
+
+body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    background: var(--surface-ground);
+    color: var(--text-color);
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-label{
+    padding: 5px;
+    width: 200px;
+    border-radius: 8px;
+    border: dashed 1px #333;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.bg-img{
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  11px 11px 22px #9d9d9d,
+                -11px -11px 22px #ffffff;
+}
+
+.std-img{
+    object-fit: cover;
+    height: 400px;
+    width: 300px;
+    border-radius: 50px;
+}
+    
+
+
