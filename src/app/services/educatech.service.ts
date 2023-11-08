@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Professor } from '../model/professor';
 import { Aluno } from '../model/aluno';
-import { Params } from '@angular/router';
+import { User } from '../model/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,47 @@ export class EducatechService {
   private readonly APIPROF = 'api/professores';
   private readonly APIALUNO = 'api/alunos';
   private readonly APISHARED = 'api/shared';
-
+  private usuarioLogado: User | null = null;
 
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   //SHARED SERVICES INIT
+  
   private readonly APISHAREDLogin = this.APISHARED + '/logar';
   logar(email: string, senha: string){
     console.log(email, senha);
     return this.httpClient.post<any>(this.APISHAREDLogin, {email, senha});
+  }
+
+  identificarUser(user: any){
+
+    if((user as Professor).disponibilidade !== undefined){
+      console.log("professor");
+      return "professor";
+    }
+
+    if((user as Aluno).escolarizacao !== undefined){
+      console.log("aluno");
+      return "aluno";
+    }
+    console.log("nouser");
+    return "nouser";
+
+  }
+
+  setUsuarioLogado(usuario: User) {
+    this.usuarioLogado = usuario;
+  }
+
+  getUsuarioLogado(): User | null {
+    return this.usuarioLogado;
+  }
+
+  logout() {
+    //engual o leo
+    this.usuarioLogado = null;
+    this.router.navigate(['/login']);
   }
 
   //SHARED SERVICES END

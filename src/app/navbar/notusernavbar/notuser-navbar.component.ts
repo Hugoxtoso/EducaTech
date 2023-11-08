@@ -19,12 +19,12 @@ export class NotUserNavBarComponent implements OnInit{
       {
         label: 'Como Professor',
         icon: 'pi pi-briefcase',
-        routerLink: ['cadastro-professor']
+        routerLink: ['cadastro/professor']
       },
       {
         label: 'Como Aluno',
         icon: 'pi pi-user',
-        routerLink: ['cadastro-aluno']
+        routerLink: ['cadastro/aluno']
       }
     ];
 }

@@ -1,24 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PrimengModule } from '../shared/primeng.module';
 import { NotUserNavBarComponent } from './notusernavbar/notuser-navbar.component';
-import { AlunoNavBarComponent } from './alunonavbar/aluno-navbar.component';
-import { ProfessorNavBarComponent } from './professornavbar/professor-navbar.component';
-
-
-
-
-
+import { UserNavBarComponent } from './usernavbar/user-navbar.component';
+import { NavbarComponent } from './navbar.component';
 
 @NgModule({
   declarations: [
+    NavbarComponent,
     NotUserNavBarComponent,
-    AlunoNavBarComponent,
-    ProfessorNavBarComponent
+    UserNavBarComponent
   ],
   exports:[
-    NotUserNavBarComponent,
-    AlunoNavBarComponent,
-    ProfessorNavBarComponent
+    NavbarComponent,
   ],
   imports: [
     PrimengModule,

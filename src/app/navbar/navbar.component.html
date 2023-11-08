@@ -1,0 +1,2 @@
+<notuser-navbar *ngIf="!educatechService.getUsuarioLogado()"></notuser-navbar>
+<user-navbar  *ngIf="educatechService.getUsuarioLogado()"></user-navbar>

@@ -1,6 +1,6 @@
 <p-menubar>
     <ng-template pTemplate="start" >
-        <a href="/">
+        <a [routerLink]="['home']">
             <div>
                 <img alt="penis" src="https://media.discordapp.net/attachments/911394611300270122/1166500434383483002/75ddcbde-cb88-4ba6-adb8-50b3fd400058-transformed.png?ex=654ab730&is=65384230&hm=631a15903f2fb5f3e7f124369f4836e05ed7c69f8b6febe5102ec288dee00783&=&width=533&height=282" height="60" class="mr-2" />
                 <a style="font-size: 60px; margin-left: 5px;">EducaTech</a>
@@ -18,9 +18,9 @@
 <p-sidebar [(visible)]="sidebarVisible2" position="right">
     <h1>EducaTech</h1>
     <a><a style="font-size: 20px; "><b>Se você é um aluno</b></a> e ainda não está cadastrado, pode criar uma conta no botão de cadastro abaixo</a><br/><br/>
-    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true" [routerLink]="['/cadastro-aluno']"></p-button><br/><br/><br/>
+    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true" [routerLink]="['/cadastro/aluno']"></p-button><br/><br/><br/>
     <a><a style="font-size: 20px; "><b>Se você é um Professor</b></a> e ainda não está cadastrado, pode criar uma conta no botão de cadastro abaixo</a><br/><br/>
-    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true"  [routerLink]="['/cadastro-professor']"></p-button><br/><br/><br/>
+    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true"  [routerLink]="['/cadastro/professor']"></p-button><br/><br/><br/>
     <a><a style="font-size: 20px; "><b>Se você já possui conta</b></a> seja um aluno ou um professor, pode fazer login no botão abaixo</a><br/><br/>
     <p-button class="botao-margin-sides" label="Login" severity="secondary" [outlined]="true" [routerLink]="['/login']"></p-button>
 </p-sidebar>

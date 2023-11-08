@@ -19,3 +19,4 @@ export interface Professor{
 
     img: string;
 }
+
