@@ -17,6 +17,10 @@ export interface Professor{
     
     cpf: string;
 
+    avaliacao: number;
+
+    quantidadeavaliacao: number;
+
     img: string;
 }
 

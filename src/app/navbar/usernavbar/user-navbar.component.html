@@ -8,7 +8,8 @@
         </a>
     </ng-template>
     <ng-template pTemplate="end">
-        <p-button [routerLink]="['educatech']" icon="pi pi-user" severity="secondary" [outlined]="true" class="botao-margin-sides"></p-button>
+        <p-button *ngIf="educatechService.getUsuarioLogado()?.tipo == 'aluno'" [routerLink]="['educatech/meuperfil/aluno']" icon="pi pi-user" severity="secondary" [outlined]="true" class="botao-margin-sides"></p-button>
+        <p-button *ngIf="educatechService.getUsuarioLogado()?.tipo == 'professor'" [routerLink]="['educatech/meuperfil/professor']" icon="pi pi-user" severity="secondary" [outlined]="true" class="botao-margin-sides"></p-button>
         <p-button (onClick)="sidebarVisible = true" icon="pi pi-bars" severity="secondary" [outlined]="true" class="botao-margin-sides"></p-button>
     </ng-template>
 </p-menubar>

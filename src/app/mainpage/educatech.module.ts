@@ -9,7 +9,7 @@ import { PrimengModule } from '../shared/primeng.module';
 @NgModule({
   declarations: [
     EducaTechComponent,
-    UserMainpageComponent,
+    UserMainpageComponent,    
   ],
   exports:[
     EducaTechComponent,

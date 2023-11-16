@@ -3,6 +3,7 @@
 }
 .maindiv{
     width: 100%;
+    
 }
 
 .leftbox{
@@ -13,17 +14,22 @@
     margin: 3% 10% 3% 5%;
 }
 
-.imgdiv{
-    margin: 0 0 0 7%;
-
-    padding: 0;
+.mainbox{
+    margin: 3% 30% 3% 30%;
+    width: 40%;
 }
+
 .img{
     border: solid;
     border-radius: 5px;
     border-color: #ddd;
 }
 .boxtext{
-    margin: 5% 0 0 0 ;
     line-height: 1.5;
 }
+
+
+.text-center{
+    text-align: center;
+}
+

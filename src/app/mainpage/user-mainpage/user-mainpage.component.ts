@@ -1,4 +1,5 @@
 import {Component, } from '@angular/core';
+import { EducatechService } from 'src/app/services/educatech.service';
 
 
 
@@ -8,6 +9,8 @@ import {Component, } from '@angular/core';
   styleUrls: ['./user-mainpage.component.css']
 })
 export class UserMainpageComponent{
+
+  constructor(public educatechService: EducatechService){}
 
 }
 

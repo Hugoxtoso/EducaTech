@@ -1,0 +1,74 @@
+<div class="card">
+    <p-dataView #dv [value]="professores" [layout]="'list'">
+        <ng-template pTemplate="header">
+            <div class="flex div-filtros">   
+                <span class="form-span">
+                    <input pInputText id="filtroName" placeholder="Filtrar por nome" name="filtroName" class="form-input" #nomeFilter/>
+                </span> 
+                <div class="flex div-filtros">
+                    <p-rating [(ngModel)]="ratingFilter"></p-rating> 
+                    <p-multiSelect class="input-disponibilidade" [options]="disponibilidades" [(ngModel)]="disponibilidadeFilter" [showHeader]="false" placeholder="Selecione os turnos"></p-multiSelect>
+                    <p-multiSelect class="input-especializacao" [options]="especializacoes"  [(ngModel)]="especializacaoFilter" [showHeader]="true" optionLabel="label" placeholder="Selecione as especializações"></p-multiSelect>
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div> 
+            </div>
+        </ng-template>
+        <ng-template let-professor pTemplate="listItem" >
+            <div class="col-12" *ngIf="(professor.nome | filtrarProfessorNomePipe: nomeFilter.nativeElement.value)
+                && (professor.disponibilidade | filtrarProfessorTurnoPipe: disponibilidadeFilter)
+                && (professor.especializacao | filtrarProfessorEspecializacaoPipe: especializacaoFilter)
+                && (professor.avaliacao | filtrarProfessorRatingPipe: ratingFilter)">
+                <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                    <img class="list-img w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="'data:image/*;base64,' + professor.img" [alt]="professor.nome" />
+                    <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                            <div class="text-2xl font-bold text-900">{{ professor.nome }}</div>                            
+                            <div class="text-1xl text-900">{{ professor.email }}</div>
+                            <p-rating [ngModel]="professor.avaliacao" [readonly]="true" [cancel]="false"></p-rating>
+                            <div class="flex align-items-center gap-3">
+                                <span class="flex align-items-center gap-2">
+                                    <i class="pi pi-tag"></i>
+                                    <span class="font-semibold">{{ professor.especializacao }}</span>
+                                </span>
+                                <div *ngFor="let disponibilidade of professor.disponibilidade">
+                                    <p-tag [rounded]="true" [value]="disponibilidade" [severity]="getSeverity(disponibilidade)"></p-tag>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                            <!-- <span class="text-2xl font-semibold">{{ professor.price }}</span> -->
+                            <!-- <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template let-professor pTemplate="gridItem">
+            <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2"  *ngIf="(professor.nome | filtrarProfessorNomePipe: nomeFilter.nativeElement.value)
+            && (professor.disponibilidade | filtrarProfessorTurnoPipe: disponibilidadeFilter)
+            && (professor.especializacao | filtrarProfessorEspecializacaoPipe: especializacaoFilter)">
+                <div class="p-4 border-1 surface-border surface-card border-round">
+                    <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+                        <span class="flex align-items-center gap-2">
+                            <i class="pi pi-tag"></i>
+                            <span class="font-semibold">{{ professor.especializacao }}</span>
+                        </span>
+                        <div *ngFor="let disponibilidade of professor.disponibilidade">
+                            <p-tag [rounded]="true" [value]="disponibilidade" [severity]="getSeverity(disponibilidade)"></p-tag>
+                        </div>
+                    </div>
+                    <div class="flex flex-column align-items-center gap-3 py-5">
+                        <img class="card-img w-9 shadow-2 border-round" [src]="'data:image/*;base64,' + professor.img" [alt]="professor.nome" />
+                        <div class="text-2xl font-bold">{{ professor.nome }}</div>
+                        <div class="text-1xl text-900">{{ professor.email }}</div>
+                        <p-rating [ngModel]="professor.avaliacao" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="flex align-items-center justify-content-between">
+                        <!-- <span class="text-2xl font-semibold">{{ '$' + product.price }}</span> -->
+                        <!-- <button pButton icon="pi pi-shopping-cart" class="p-button-rounded" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button> -->
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

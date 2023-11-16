@@ -25,7 +25,7 @@ export class CadastroProfessorComponent{
       { name: 'manhã', value: "manhã" },
       { name: 'tarde', value: "tarde" },
       { name: 'noite', value: "noite" }
-  ];
+    ];
 
   selectedImagem: string = "";
   imageNotTouch: boolean = true;
@@ -67,6 +67,8 @@ export class CadastroProfessorComponent{
       telefone: f.value.telefone,    
       cpf: f.value.cpf,
       img: this.selectedImagem,
+      avaliacao: 0,
+      quantidadeavaliacao: 0,
     }
     console.log(prof)
     this.educatechService.cadastrarProfessor(prof).subscribe(val => {

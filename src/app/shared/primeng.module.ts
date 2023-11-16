@@ -69,11 +69,30 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { SplitButtonModule } from 'primeng/splitbutton';
-
-
-
-
-
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
+import { InplaceModule } from 'primeng/inplace';
+import { ImageModule } from 'primeng/image';
+import { MessagesModule } from 'primeng/messages';
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ScrollerModule } from 'primeng/scroller';
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { SpinnerModule } from 'primeng/spinner';
+import { SplitterModule } from 'primeng/splitter';
+import { StepsModule } from 'primeng/steps';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { TerminalModule } from 'primeng/terminal';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { TimelineModule } from 'primeng/timeline';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { TreeModule } from 'primeng/tree';
+import { TreeSelectModule } from 'primeng/treeselect';
+import { TreeTableModule } from 'primeng/treetable';
 
 
 @NgModule({
@@ -146,7 +165,31 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TableModule,
     ToastModule,
     SpeedDialModule,
-    SplitButtonModule
+    SplitButtonModule,
+    VirtualScrollerModule,
+    InplaceModule,
+    ImageModule,
+    MessagesModule,
+    OrganizationChartModule,
+    OverlayPanelModule,
+    ScrollerModule,
+    ScrollTopModule,
+    SpinnerModule,
+    SplitterModule,
+    StepsModule,
+    TabMenuModule,
+    TabViewModule,
+    TagModule,
+    TerminalModule,
+    TieredMenuModule,
+    TimelineModule,
+    ToggleButtonModule,
+    ToolbarModule,
+    TooltipModule,
+    TriStateCheckboxModule,
+    TreeModule,
+    TreeSelectModule,
+    TreeTableModule
   ]
 })
 export class PrimengModule { }

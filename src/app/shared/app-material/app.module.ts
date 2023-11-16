@@ -18,6 +18,14 @@ import { HomePageComponent } from 'src/app/homepage/homepage.component';
 import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 import { CadastroComponent } from 'src/app/cadastro/cadastro.component';
 import { EducaTechModule } from 'src/app/mainpage/educatech.module';
+import { MeuperfilComponent } from 'src/app/mainpage/meuperfil/meuperfil.component';
+import { MeuperfilAlunoComponent } from 'src/app/mainpage/meuperfil/meuperfil-aluno/meuperfil-aluno.component';
+import { MeuperfilProfessorComponent } from 'src/app/mainpage/meuperfil/meuperfil-professor/meuperfil-professor.component';
+import { ListaProfessoresComponent } from 'src/app/mainpage/lista-professores/lista-professores.component';
+import { FiltrarProfessorNomePipe } from 'src/app/pipes/filtrarProfessorPipes/filtrarProfessorNome.pipe';
+import { FiltrarProfessorTurnoPipe } from 'src/app/pipes/filtrarProfessorPipes/filtrarProfessorTurno.pipe';
+import { FiltrarProfessorEspecializacaoPipe } from 'src/app/pipes/filtrarProfessorPipes/filtrarProfessorEspecializacao.pipe';
+import { FiltrarProfessorRatingPipe } from 'src/app/pipes/filtrarProfessorPipes/filtrarProfessorRating.pipe';
 
 
 @NgModule({
@@ -30,7 +38,15 @@ import { EducaTechModule } from 'src/app/mainpage/educatech.module';
     LoginComponent,
     SobreComponent,
     HomePageComponent,
-    CadastroComponent
+    CadastroComponent,
+    MeuperfilComponent,
+    MeuperfilAlunoComponent,
+    MeuperfilProfessorComponent,
+    ListaProfessoresComponent,
+    FiltrarProfessorNomePipe,
+    FiltrarProfessorTurnoPipe,
+    FiltrarProfessorEspecializacaoPipe,
+    FiltrarProfessorRatingPipe
   ],
   imports: [
     BrowserModule,

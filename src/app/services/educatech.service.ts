@@ -68,6 +68,16 @@ export class EducatechService {
     return this.httpClient.post(this.APIPROFCadastrar, prof);
   }
 
+  private readonly APIPROFBuscarID = this.APIPROF+'/buscarid';
+  buscarProfessorporID(id: number){
+    return this.httpClient.post(this.APIPROFBuscarID, id);
+  }
+
+  private readonly APIPROFEditar = this.APIPROF + '/editar';
+  editarProfessor(professor: Professor){
+    return this.httpClient.put(this.APIPROFEditar, professor);
+  }
+
   //PROFESSOR SERVICES END
 
   //ALUNO SERVICES INIT
@@ -76,6 +86,15 @@ export class EducatechService {
     return this.httpClient.post(this.APIALUNOCadastrar, aluno);
   }
 
+  private readonly APIALUNOBuscarID = this.APIALUNO+'/buscarid';
+  buscarAlunoporID(id: number){
+    return this.httpClient.post<Aluno>(this.APIALUNOBuscarID, id);
+  }
+
+  private readonly APIALUNOEditar = this.APIALUNO + '/editar';
+  editarAluno(aluno: Aluno){
+    return this.httpClient.put(this.APIALUNOEditar, aluno);
+  }
 
   //ALUNO SERVICES END
   
