@@ -55,14 +55,11 @@ escolaridadeSelecionada: Escolaridade = {name: ''};
         endereco: f.value.endereco,
         escolarizacao: this.escolaridadeSelecionada?.name,
       }
-      console.log(aluno)
       this.educatechService.cadastrarAluno(aluno).subscribe(val => {
         if(!val)
           this.toastService.show('tc', 'error', 'Erro', 'Erro ao cadastrar, email já em uso.');
         else
-          this.sucesso();
-  
-        console.log(val);
+          this.sucesso();  
       });
   
     }

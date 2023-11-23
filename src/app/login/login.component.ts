@@ -14,22 +14,33 @@ export class LoginComponent {
   tipoUsuario!: string;
 
   constructor(private educatechService: EducatechService, private router: Router, private toastService: ToastService){}
-  //sexo
+  
   logar(f: NgForm){
    const response = this.educatechService.logar(f.value.email, f.value.senha)
    response.subscribe(user => {
     this.tipoUsuario = this.educatechService.identificarUser(user);
-    this.createUser(user, this.tipoUsuario);
     this.redirectUser(this.tipoUsuario, user);
    });
   }
 
-  createUser(user: any, type: string){
+  async createUser(user: any, type: string){
       const novoUser: User = {
         id: user.id,
         tipo: type
       }
-      this.educatechService.setUsuarioLogado(novoUser)
+      this.educatechService.setUsuarioLogado(novoUser);
+
+      let userForName: any;
+      if(novoUser.tipo == 'professor'){
+        const user = await this.educatechService.buscarProfessorporID(novoUser.id).toPromise();
+        userForName = user;
+        
+      }
+      if(novoUser.tipo == 'aluno'){
+        const user = await this.educatechService.buscarAlunoporID(novoUser.id).toPromise();
+        userForName = user;
+      }
+      this.educatechService.setUserName(userForName.nome)
     }
      
 
@@ -40,6 +51,7 @@ export class LoginComponent {
     }
 
     this.router.navigate(['/educatech']);
+    this.createUser(user, this.tipoUsuario);
     this.toastService.show('tc', 'success', 'Bem Vindo, '+ user.nome, 'Login realizado com sucesso!' ); 
   }
 

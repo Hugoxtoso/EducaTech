@@ -1,5 +1,5 @@
 .card{
-    margin: 5% 10% 5% 10%;
+    margin: 1% 10% 5% 10%;
     width: 80%;
 }
 
@@ -27,4 +27,24 @@
 
 :host ::ng-deep .input-especializacao .p-multiselect{
     width: 400px;
+}
+
+::ng-deep .botao-list .p-button{
+margin: 40px 0 0 0;
+width: 150px;
+
+
+}
+
+.titulo{
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    margin-top: 2%;
+
+}
+
+.noDecoration{
+    color: var(--text-color);
+    text-decoration: none;
 }

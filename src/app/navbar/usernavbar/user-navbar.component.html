@@ -1,4 +1,4 @@
-<p-menubar>
+<p-menubar class="shadow">
     <ng-template pTemplate="start" >
         <a [routerLink]="['educatech']">
             <div>
@@ -17,11 +17,24 @@
   
 
 <p-sidebar [(visible)]="sidebarVisible" position="right">
-    <h1>EducaTech</h1>
-    <a *ngIf="educatechService.getUsuarioLogado()?.tipo == 'aluno'"><a style="font-size: 20px; "><b>Se você é um aluno</b></a> e ainda não está cadastrado, pode criar uma conta no botão de cadastro abaixo</a><br/><br/>
-    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true" [routerLink]="['/cadastro/aluno']"></p-button><br/><br/><br/>
-    <a><a style="font-size: 20px; "><b>Se você é um Professor</b></a> e ainda não está cadastrado, pode criar uma conta no botão de cadastro abaixo</a><br/><br/>
-    <p-button class="botao-margin-top" label="Cadastre-se" severity="success" [outlined]="true"  [routerLink]="['/cadastro/professor']"></p-button><br/><br/><br/>
-    <a><a style="font-size: 20px; "><b>Se você já possui conta</b></a> seja um aluno ou um professor, pode fazer login no botão abaixo</a><br/><br/>
-    <p-button class="botao-margin-sides" label="Logout" severity="danger" [outlined]="true" (click)="educatechService.logout()"></p-button>
+    <div class="div-botoes">    
+        <h1>Olá,<br> {{this.educatechService.getUserName()}} </h1>
+        <div class="flex flex-column gap-3">
+            <a class="titulo-botoes">Conta</a>
+            <p-button *ngIf="educatechService.getUsuarioLogado()?.tipo == 'professor'" [routerLink]="['educatech/meuperfil/professor']" icon="pi pi-user" severity="success" [outlined]="true" class="botao-margin-sides" label="Meu perfil"></p-button>
+            <p-button *ngIf="educatechService.getUsuarioLogado()?.tipo == 'aluno'" [routerLink]="['educatech/meuperfil/aluno']" icon="pi pi-user" label="Meu perfil" severity="success" [outlined]="true" class="botao-margin-sides"></p-button>    
+        </div>  
+        <hr>
+        <div class="flex flex-column gap-3">
+            <a class="titulo-botoes">EducaTech</a>
+            <p-button [routerLink]="['educatech/servicos/lista']" icon="pi pi-user" severity="secondary" [outlined]="true" class="botao-margin-sides" label="Meus serviços"></p-button>
+            <p-button *ngIf="educatechService.getUsuarioLogado()?.tipo == 'aluno'" [routerLink]="['educatech/professores/lista']" icon="pi pi-user" label="Professores" severity="secondary" [outlined]="true" class="botao-margin-sides"></p-button>    
+        </div>
+        <hr>
+        <div class="flex flex-column gap-3">
+            <a class="titulo-botoes">Sair</a>
+            <p-button (click)="this.educatechService.logout()" icon="pi pi-user" severity="danger" [outlined]="true" label="Logout"></p-button>
+        </div>
+    </div>
+    
 </p-sidebar>

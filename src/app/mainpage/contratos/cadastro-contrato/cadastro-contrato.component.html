@@ -1,0 +1,47 @@
+
+<div class="titulo">Proposta de serviço para {{nomeProfessor}} </div>
+<div class="card">
+
+    <form (ngSubmit)="cadastrar(f)" #f="ngForm" class="form">
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            <div class="flex-auto">
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="titulo">Título</label>
+                    <input pInputText id="titulo" aria-describedby="titulo-help" required ngModel name="titulo" />
+                    <small id="titulo-help">Digite o título do serviço</small>
+                </div>
+            </div>
+            <div class="flex-auto">
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="valor">Valor</label>
+                    <p-inputMask class="form-input" ngModel name="valor" [required]="true" id="valor" placeholder="0000,00" [slotChar]="''" [mask]="'R$ 9?9999999999999999999999999999999999999999999999999999999999'"/>
+                    <small id="valor-help">Digite o valor que você está disposto(a) a pagar pelo serviço.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            <label htmlFor="valor">Descrição</label>
+            <textarea rows="15" cols="100" pInputTextarea ngModel id="descricao" name="descricao" required placeholder=
+            "Insira aqui algumas informações sobre o serviço que você quer do professor em questão, como horário, quantos e quais dias da semanana, endereço das aulas, etc. Esta requisição será enviada ao respectivo professor e ele poderá aceitar, recusar ou editar e reenviar com uma contra-proposta. Caso deseje conversar diretamente com o professor, vá em seu perfil e clicque no ícone do Whatsapp."
+            ></textarea>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            
+        </div>
+
+        <div style="width: 100%;" class="flex align-items-center gap-2 justify-content-center">
+            <a pButton pRipple label="Voltar" onclick="window.history.back()" class="p-button-secondary"></a>
+            <button pButton pRipple label="Propor serviço" [disabled]="!f.valid" type="submit" class="p-button-success"></button>
+        </div>  
+         
+
+
+
+
+
+
+
+

@@ -1,19 +1,23 @@
+<div class="titulo">Professores</div>
 <div class="card">
     <p-dataView #dv [value]="professores" [layout]="'list'">
-        <ng-template pTemplate="header">
+        <ng-template pTemplate="header" emptyMessage="Sem professores">
             <div class="flex div-filtros">   
-                <span class="form-span">
-                    <input pInputText id="filtroName" placeholder="Filtrar por nome" name="filtroName" class="form-input" #nomeFilter/>
+                <span class="form-span p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText id="filtroName" name="filtroName" class="form-input" #nomeFilter/>
+                    
                 </span> 
                 <div class="flex div-filtros">
                     <p-rating [(ngModel)]="ratingFilter"></p-rating> 
                     <p-multiSelect class="input-disponibilidade" [options]="disponibilidades" [(ngModel)]="disponibilidadeFilter" [showHeader]="false" placeholder="Selecione os turnos"></p-multiSelect>
                     <p-multiSelect class="input-especializacao" [options]="especializacoes"  [(ngModel)]="especializacaoFilter" [showHeader]="true" optionLabel="label" placeholder="Selecione as especializações"></p-multiSelect>
+                    <button pButton (click)="limparFiltros()" icon="pi pi-filter-slash"></button>
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </div> 
             </div>
         </ng-template>
-        <ng-template let-professor pTemplate="listItem" >
+        <ng-template let-professor pTemplate="listItem" emptyMessage="Sem professores">
             <div class="col-12" *ngIf="(professor.nome | filtrarProfessorNomePipe: nomeFilter.nativeElement.value)
                 && (professor.disponibilidade | filtrarProfessorTurnoPipe: disponibilidadeFilter)
                 && (professor.especializacao | filtrarProfessorEspecializacaoPipe: especializacaoFilter)
@@ -35,9 +39,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                            <!-- <span class="text-2xl font-semibold">{{ professor.price }}</span> -->
-                            <!-- <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button> -->
+                        <div class="flex div-filtros">
+                            <button pButton class=" p-button-rounded botao-list" severity="success" [routerLink]="['../detalhes/' + professor.id]" >Ver detalhes</button>
+                            <button pButton class="p-button-rounded p-button-success botao-list" label="Propor serviço"  [routerLink]="['../../servicos/cadastrar/' + professor.id, professor.nome]" ></button>
                         </div>
                     </div>
                 </div>
@@ -46,7 +50,8 @@
         <ng-template let-professor pTemplate="gridItem">
             <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2"  *ngIf="(professor.nome | filtrarProfessorNomePipe: nomeFilter.nativeElement.value)
             && (professor.disponibilidade | filtrarProfessorTurnoPipe: disponibilidadeFilter)
-            && (professor.especializacao | filtrarProfessorEspecializacaoPipe: especializacaoFilter)">
+            && (professor.especializacao | filtrarProfessorEspecializacaoPipe: especializacaoFilter)
+            && (professor.avaliacao | filtrarProfessorRatingPipe: ratingFilter)">
                 <div class="p-4 border-1 surface-border surface-card border-round">
                     <div class="flex flex-wrap align-items-center justify-content-between gap-2">
                         <span class="flex align-items-center gap-2">
@@ -63,9 +68,9 @@
                         <div class="text-1xl text-900">{{ professor.email }}</div>
                         <p-rating [ngModel]="professor.avaliacao" [readonly]="true" [cancel]="false"></p-rating>
                     </div>
-                    <div class="flex align-items-center justify-content-between">
-                        <!-- <span class="text-2xl font-semibold">{{ '$' + product.price }}</span> -->
-                        <!-- <button pButton icon="pi pi-shopping-cart" class="p-button-rounded" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button> -->
+                    <div class="flex justify-content-center">
+                        
+                        <button pButton class=" p-button-rounded" [routerLink]="['../detalhes/' + professor.id]" >Ver detalhes</button>
                     </div>
                 </div>
             </div>

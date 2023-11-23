@@ -1,0 +1,59 @@
+<div class="titulo" *ngIf="educatechService.getUsuarioLogado()?.tipo === 'professor'"> Proposta de serviço de {{alunoContrato.nome}} </div>
+<div class="titulo" *ngIf="educatechService.getUsuarioLogado()?.tipo === 'aluno'"> Proposta de serviço para {{professorContrato.nome}} </div>
+<div class="subtitulo"> Estado: {{tagContrato}} </div>
+<div class="card">
+
+    <form (ngSubmit)="editar(f)" #f="ngForm" class="form">
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            <div class="flex-auto">
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="titulo">Título</label>
+                    <input pInputText id="titulo" aria-describedby="titulo-help" required [(ngModel)]="contrato.titulo" name="titulo" [disabled]="disableEditar"/>
+                    <small id="titulo-help">Título do serviço</small>
+                </div>
+            </div>
+            <div class="flex-auto">
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="valor">Valor</label>
+                    <p-inputMask class="form-input" name="valor" [required]="true" id="valor" [(ngModel)]="contrato.valor" placeholder="0000,00" [disabled]="disableEditar" [slotChar]="''" [mask]="'R$ 9?9999999999999999999999999999999999999999999999999999999999'"/>
+                    <small id="valor-help">Valor que o(a) aluno(a) está disposto(a) a pagar pelo serviço.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            <label htmlFor="valor">Descrição</label>
+            <textarea rows="15" cols="100" pInputTextarea [(ngModel)]="contrato.descricao" id="descricao" name="descricao" [disabled]="disableEditar" required placeholder=
+            "Insira aqui algumas informações sobre o serviço que você quer do professor em questão, como horário, quantos e quais dias da semanana, endereço das aulas, etc. Esta requisição será enviada ao respectivo professor e ele poderá aceitar, recusar ou editar e reenviar com uma contra-proposta. Caso deseje conversar diretamente com o professor, vá em seu perfil e clicque no ícone do Whatsapp."
+            ></textarea>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-5">
+            
+        </div>
+
+        <div style="width: 100%;" class="flex align-items-center gap-2 justify-content-between">  
+            <div class="flex align-items-center gap-2 justify-content-center">
+                <a pButton pRipple label="Voltar" onclick="window.history.back()" class="p-button-secondary"></a>
+                <a pButton *ngIf="(podeAceitar) && (disableEditar)" pRipple label="Aceitar Proposta" (click)="aceitarContrato()" class="p-button-success"></a>
+                <a pButton *ngIf="podeFinalizar" pRipple label="Finalizar Serviço" (click)="finalizarContrato()" class="p-button-danger"></a>
+            </div>
+
+            <div class="div-avaliacao" *ngIf="podeAvaliar">      
+                <label for="avaliacao">Avaliação:</label>
+                <p-rating [(ngModel)]="valueAvaliacao" id="avaliacao" name="avaliacao" required></p-rating>
+                <p-button (click)="avaliar()" size="small" type="button" [disabled]="valueAvaliacao <= 0">Confirmar</p-button>
+            </div>
+            
+            <div class="flex align-items-center gap-2 justify-content-center" *ngIf="podeEditar">
+                <button *ngIf="!disableEditar" pButton pRipple label="Enviar proposta" [disabled]="!f.valid" type="submit" class="p-button-success"></button>
+                <button *ngIf="disableEditar" pButton pRipple [label]="textoEditarContrato"  (click)="disableEditar = !disableEditar"type="button" class="p-button-primary"></button>
+                <button *ngIf="!disableEditar" pButton pRipple label="Cancelar"  (click)="editarform(f)"type="button" class="p-button-danger"></button>
+            </div>
+        </div>  
+    </form>   
+</div>
+         
+
+

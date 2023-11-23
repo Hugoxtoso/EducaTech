@@ -15,7 +15,6 @@ export class FiltrarProfessorTurnoPipe implements PipeTransform {
     //let him cock
     //COOK*
     for(const elem1 of args){
-        console.log(elem1, isEqual)
         if(!value.includes(elem1)){
             isEqual = false;
             break;

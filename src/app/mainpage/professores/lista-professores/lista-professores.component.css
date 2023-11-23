@@ -1,0 +1,43 @@
+.card{
+    margin: 1% 10% 5% 10%;
+    width: 80%;
+}
+
+.list-img{
+    object-fit: contain;
+    height: 100px;
+    width: 100px;
+}
+
+.div-filtros{
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-img{
+    object-fit: cover;
+    height: 300px;
+    width: 80px;
+}
+
+:host ::ng-deep .input-disponibilidade .p-multiselect{
+    width: 250px;
+}
+
+:host ::ng-deep .input-especializacao .p-multiselect{
+    width: 400px;
+}
+
+.botao-list{
+margin: 40px 0 0 0;
+
+}
+
+.titulo{
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    margin-top: 2%;
+
+}

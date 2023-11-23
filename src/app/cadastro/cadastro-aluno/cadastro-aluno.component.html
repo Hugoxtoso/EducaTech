@@ -12,7 +12,7 @@
             </div>
             <div class="flex-auto">
                 <span class="p-float-label form-span">
-                    <input pInputText id="email" name="email" required ngModel class="form-input"/>
+                    <input pInputText id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" required ngModel class="form-input"/>
                     <label htmlFor="email">Email*</label>
                 </span>
             </div>

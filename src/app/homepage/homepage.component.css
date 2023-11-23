@@ -2,12 +2,14 @@
     width: 96%; 
     display: flex; 
     flex-direction: line; 
-    align-items: left; 
+    align-items: center; 
     margin: 2%; 
-    border: solid; 
+    border: solid #ddd; 
     padding: 25px; 
     border-radius: 5px; 
-    border-color: #ddd;
+    background: #fff;
+    box-shadow:  11px 11px 22px #9d9d9d,
+        -11px -11px 22px #ffffff;
 }
 
 .left-div{

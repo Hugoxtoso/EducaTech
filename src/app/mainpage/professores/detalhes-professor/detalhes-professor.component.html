@@ -1,48 +1,46 @@
 
 <div class="card">    
-    <form (ngSubmit)="editar(f)" #f="ngForm" class="form">
-        <div class="div-editar"><div class="titulo">Meu Perfil</div><p-button pRipple (click)="editarform(f)" icon="pi pi-pencil" [rounded]="true" severity="secondary" [text]="disableEditar" [raised]="disableEditar" class="botao-editar"></p-button></div>
+    <div class="form">
+        <div class="div-editar"><div class="titulo"> {{usuario.nome}} </div></div>
         <div class="flex-gap">
             <div class="div-inputs">        
-                <div class="flex flex-wrap gap-3 mb-5">
-                    <div class="flex-auto">
+                <div class="flex flex-row gap-3 mb-5">
+                    <div class="flex">
                         <span class="p-float-label form-span" >
                             <input pInputText id="nome" name="nome" [disabled]="disableEditar" [(ngModel)]="usuario.nome" required  class="form-input"/>
-                            <label htmlFor="nome">Nome*</label>
+                            <label htmlFor="nome">Nome</label>
                         </span>
                     </div>
-                    <div class="flex-auto">
-                        <span class="p-float-label form-span">
-                            <input pInputText id="email"name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [disabled]="disableEditar" [(ngModel)]="usuario.email" required class="form-input"/>
-                            <label htmlFor="email">Email*</label>
-                        </span>
+                    <div class="flex">         
+                            <div class="p-inputgroup">
+                                <span class="p-float-label telefone-span ">
+                                <p-inputMask  mask="(99) 99999-9999" name="telefone" [disabled]="disableEditar" [(ngModel)]="usuario.telefone" [required]="true" id="telefone" class="form-input input-telefone" ></p-inputMask>
+                                <label htmlFor="telefone">Telefone</label>
+                                <a href="https://wa.me/+55{{numerowpp}}" target="_blank" type="button" pButton icon="pi pi-whatsapp" class="telefone-button p-button-success nodecoration"></a>
+                                </span>
+
+                            </div>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-3 mb-5">
                     <div class="flex-auto">
                         <span class="p-float-label form-span">
-                            <p-inputMask  mask="999.999.999-99" name="cpf" [disabled]="disableEditar" [(ngModel)]="usuario.cpf" [required]="true" class="form-input" id="cpf"></p-inputMask>
-                            <label htmlFor="cpf">CPF*</label>
-                        </span>
-                    </div>
-                    <div class="flex-auto">
-                        <span class="p-float-label form-span">
-                            <p-inputMask  mask="(99) 99999-9999" name="telefone" [disabled]="disableEditar" [(ngModel)]="usuario.telefone" [required]="true" id="telefone" class="form-input" ></p-inputMask>
-                            <label htmlFor="telefone">Telefone*</label>
+                            <input pInputText id="email"name="email" [disabled]="disableEditar" [(ngModel)]="usuario.email" required class="form-input"/>
+                            <label htmlFor="email">Email</label>
                         </span>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-3 mb-5">
                     <span class="p-float-label form-span">
                         <input pInputText id="faculdade" name="faculdade" [disabled]="disableEditar" [(ngModel)]="usuario.faculdade" required class="form-input"/>
-                        <label htmlFor="faculdade">Faculdade*</label>
+                        <label htmlFor="faculdade">Faculdade</label>
                     </span>
                 </div>
                 <div class="flex flex-wrap gap-3 mb-5 ">
                     <div class="flex-auto">
                         <span class="p-float-label form-span">            
                             <input pInputText id="especializacao" name="especializacao" [disabled]="disableEditar" [(ngModel)]="usuario.especializacao" required class="form-input"/>
-                            <label htmlFor="especializacao">Especialização*</label>
+                            <label htmlFor="especializacao">Especialização</label>
                         </span>
                     </div>           
                     <div class="card no-shadow flex justify-content-center gap-3">
@@ -65,22 +63,24 @@
                 </div>
                 <div style="width: 100%;" class="flex align-items-center justify-content-center">
                     <div style="width: 100%;" class="flex botoes-form">
-                        <div *ngIf="disableEditar">&nbsp;</div>
-                        <button *ngIf="!disableEditar" pButton pRipple label="Confirmar Informações" [disabled]="!f.valid" type="submit" class="p-button-success"></button>
+                        <button pButton pRipple label="Contratar" [routerLink]="['../../../servicos/cadastrar/' + usuario.id, usuario.nome]" class="p-button-success"></button>
                         <a pButton pRipple label="Voltar" onclick="window.history.back()" class="p-button-secondary"></a>
                     </div>    
                 </div>
-            </div>               
-            <div class="div-img" >
-                <div *ngIf="!disableEditar" class="tamanho"><label for="input-img" class="file-label" >Alterar imagem</label></div>
-                <div *ngIf="disableEditar" class="tamanho">&nbsp;</div>
-                <input id="input-img" type="file" accept="images/*" [disabled]="disableEditar" required (change)="onSelect($event)">
-                <div class="bg-img">
-                    <img class="std-img" src="data:image/*;base64,{{selectedImagem}}" alt="Pessoa linda" onerror="this.onerror=null; this.src='https:\/\/github.com\/leosmsilvx\/iTonomise\/blob\/main\/src\/main\/webapp\/imgs\/homem.jpg?raw=true'">
-                </div>
-            </div>          
+            </div>     
+            <div class="flex flex-column align-items-center">     
+                <div class="div-img flex-auto">
+                    <div class="bg-img">
+                        <img class="std-img" src="data:image/*;base64,{{selectedImagem}}" alt="Pessoa linda" onerror="this.onerror=null; this.src='https:\/\/github.com\/leosmsilvx\/iTonomise\/blob\/main\/src\/main\/webapp\/imgs\/homem.jpg?raw=true'">
+                    </div>
+                </div>   
+                <div class="flex-auto estrelinhas">
+                    <p-rating [ngModel]="usuario.avaliacao" id="avaliacao" [readonly]="true" [cancel]="false" ></p-rating>      
+                    ({{usuario.quantidadeavaliacao}})
+                </div>  
+            </div>      
         </div>        
-    </form>
+    </div>
 </div>
 
 

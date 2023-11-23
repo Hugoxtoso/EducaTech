@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { EducatechService } from 'src/app/services/educatech.service';
-import { FiltrarProfessorNomePipe } from 'src/app/pipes/filtrarProfessorPipes/filtrarProfessorNome.pipe';
 
 
 @Component({
@@ -33,11 +33,8 @@ export class ListaProfessoresComponent implements OnInit{
     this.educatechService.listarProfessores().subscribe(response => {
       this.professores = response;
       this.createListEspecializacao(this.professores);
-      //morra sonar
       for(let i = 0; i < this.professores.length; i++){
-        console.log(this.professores[i].avaliacao);
         this.professores[i].disponibilidade = this.professores[i].disponibilidade.split(',');        
-        console.log(this.professores)
       }
       this.professores.sort((a: { avaliacao: number; },b: { avaliacao: number; }) => b.avaliacao - a.avaliacao);
     });      
@@ -72,6 +69,13 @@ export class ListaProfessoresComponent implements OnInit{
     }
 };
 
+limparFiltros(){
+  this.nomeFilter.nativeElement.value = "";
+  this.disponibilidadeFilter = [];
+  this.especializacaoFilter = [];
+  this.ratingFilter = 0;
+  
+}
   
 
 }

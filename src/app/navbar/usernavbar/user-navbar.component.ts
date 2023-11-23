@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { EducatechService } from 'src/app/services/educatech.service';
 
 
@@ -8,10 +8,12 @@ import { EducatechService } from 'src/app/services/educatech.service';
   selector: 'user-navbar',
   templateUrl: './user-navbar.component.html',
   styleUrls: ['./user-navbar.component.css']
-})
-export class UserNavBarComponent{
+}) 
+export class UserNavBarComponent {
   sidebarVisible: boolean = false;
+  usuario: any = '';
 
   constructor(public educatechService: EducatechService){}
+  
 
 }

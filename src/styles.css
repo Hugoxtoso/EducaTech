@@ -19,6 +19,8 @@ body {
     padding: 2rem;
     border-radius: 10px;
     margin-bottom: 1rem;
+    box-shadow:  5px 5px 10px #9d9d9d,
+        -5px -5px 10px #ffffff;
 }
 
 input[type="file"] {

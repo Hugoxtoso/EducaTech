@@ -4,6 +4,7 @@ import { Professor } from '../model/professor';
 import { Aluno } from '../model/aluno';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
+import { Contrato } from '../model/contrato';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class EducatechService {
   private readonly APIPROF = 'api/professores';
   private readonly APIALUNO = 'api/alunos';
   private readonly APISHARED = 'api/shared';
+  private readonly APICONTRATO = 'api/contrato';
   private usuarioLogado: User | null = null;
+  private userName: string | null = null;
 
   
   constructor(private httpClient: HttpClient, private router: Router) { }
@@ -21,22 +24,18 @@ export class EducatechService {
   
   private readonly APISHAREDLogin = this.APISHARED + '/logar';
   logar(email: string, senha: string){
-    console.log(email, senha);
     return this.httpClient.post<any>(this.APISHAREDLogin, {email, senha});
   }
 
   identificarUser(user: any){
 
     if((user as Professor).disponibilidade !== undefined){
-      console.log("professor");
       return "professor";
     }
 
     if((user as Aluno).escolarizacao !== undefined){
-      console.log("aluno");
       return "aluno";
     }
-    console.log("nouser");
     return "nouser";
 
   }
@@ -55,9 +54,18 @@ export class EducatechService {
     this.router.navigate(['/login']);
   }
 
+  getUserName() {
+    return this.userName;
+  }
+
+  setUserName(name: string){
+    this.userName = name;
+  }
+
   //SHARED SERVICES END
 
   //PROFESSOR SERVICES INIT
+  
   private readonly APIPROFlist = this.APIPROF+'/list';
   listarProfessores() {
     return this.httpClient.get<Professor[]>(this.APIPROFlist);
@@ -81,14 +89,15 @@ export class EducatechService {
   //PROFESSOR SERVICES END
 
   //ALUNO SERVICES INIT
+
   private readonly APIALUNOCadastrar = this.APIALUNO + '/cadastrar';
   cadastrarAluno(aluno: Aluno){
     return this.httpClient.post(this.APIALUNOCadastrar, aluno);
   }
 
-  private readonly APIALUNOBuscarID = this.APIALUNO+'/buscarid';
+  private readonly APIALUNOBuscarID = this.APIALUNO +'/buscarid';
   buscarAlunoporID(id: number){
-    return this.httpClient.post<Aluno>(this.APIALUNOBuscarID, id);
+    return this.httpClient.post(this.APIALUNOBuscarID, id);
   }
 
   private readonly APIALUNOEditar = this.APIALUNO + '/editar';
@@ -97,5 +106,29 @@ export class EducatechService {
   }
 
   //ALUNO SERVICES END
+
+  //CONTRATO SERVICES INIT
+
+  private readonly APICONTRATOListarPorId = this.APICONTRATO + '/listarPorId'
+  listarContratosPorId(user: User){
+    return this.httpClient.post<Contrato[]>(this.APICONTRATOListarPorId, user);
+  }
+
+  private readonly APICONTRATOCadastrar = this.APICONTRATO + '/cadastrar'
+  cadastrarContrato(contrato: Contrato){
+    return this.httpClient.post(this.APICONTRATOCadastrar, contrato);
+  }
+
+  private readonly APICONTRATOEditar = this.APICONTRATO + '/editar'
+  editarContrato(contrato: Contrato){
+    return this.httpClient.put(this.APICONTRATOEditar, contrato);
+  }
+
+  private readonly APICONTRATOBuscarID = this.APICONTRATO+'/buscarid';
+  buscarContratoporID(id: number){
+    return this.httpClient.post<Contrato>(this.APICONTRATOBuscarID, id);
+  }
+
+  //CONTRATO SERVICES END
   
 }

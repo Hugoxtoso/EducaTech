@@ -70,14 +70,11 @@ export class CadastroProfessorComponent{
       avaliacao: 0,
       quantidadeavaliacao: 0,
     }
-    console.log(prof)
     this.educatechService.cadastrarProfessor(prof).subscribe(val => {
       if(!val)
         this.toastService.show('tc', 'error', 'Erro', 'Erro ao cadastrar, email já em uso.');
       else
         this.sucesso();
-
-      console.log(val);
     });
 
   }

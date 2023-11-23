@@ -1,7 +1,7 @@
 .card{
     width: 56%;
     margin: 2% 22% 0 22%;
-    padding-top: 0; 
+    padding-top: 0;
 }
 
 .no-shadow {
@@ -73,3 +73,28 @@
 .disabled{
     color: grey;
 }
+
+.telefone-span{
+    width: 100%;
+}
+
+::ng-deep .input-telefone .p-inputmask {
+   border-top-right-radius: 0;
+   border-bottom-right-radius: 0;
+}
+
+
+ .telefone-button{
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+   
+ }
+
+ .estrelinhas{
+    margin: 20px;
+ }
+
+ .nodecoration{
+    text-decoration: none;
+ }

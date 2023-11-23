@@ -17,3 +17,9 @@ a{
     text-decoration: none;
     color: var(--text-color);
 }
+
+
+::ng-deep .shadow .p-menubar {
+    box-shadow:  5px 5px 10px #c2c2c2,
+        -5px -5px 10px #ffffff;
+}

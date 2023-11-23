@@ -14,3 +14,25 @@ a{
     text-decoration: none;
     color: var(--text-color);
 }
+
+.titulo-botoes {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.div-botoes{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+hr{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+::ng-deep .shadow .p-menubar {
+    box-shadow:  5px 5px 10px #c2c2c2,
+        -5px -5px 10px #ffffff;
+}

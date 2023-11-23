@@ -1,0 +1,47 @@
+<div class="titulo">Propostas de serviço</div>
+<div class="card">
+    <p-dataView #dv [value]="contratos" [layout]="'list'">
+        <ng-template pTemplate="header" emptyMessage="Sem serviços">
+            <div class="flex div-filtros">   
+                <span class="form-span p-input-icon-left flex gap-3">
+                    <i class="pi pi-search"></i>
+                    <input pInputText id="filtroTitulo" name="filtroTitulo" class="form-input" [(ngModel)]="filtroTitulo"/>
+                    <p-multiSelect *ngIf="educatechService.getUsuarioLogado()?.tipo == 'professor'" class="input-especializacao" [options]="listaAlunos"  [(ngModel)]="filtroAlunos" [showHeader]="true" optionLabel="label" placeholder="Selecione os alunos"></p-multiSelect>
+                    <p-multiSelect *ngIf="educatechService.getUsuarioLogado()?.tipo == 'aluno'" class="input-especializacao" [options]="listaProfessores"  [(ngModel)]="filtroProfessores" [showHeader]="true" optionLabel="label" placeholder="Selecione os professores"></p-multiSelect>
+                    <p-multiSelect class="input-especializacao" [options]="listaEstados"  [(ngModel)]="filtroEstado" [showHeader]="true" optionLabel="label" placeholder="Selecione as situações"></p-multiSelect>
+                    <button pButton (click)="limparFiltros()" icon="pi pi-filter-slash"></button>
+                </span> 
+                <div class="flex div-filtros">
+                    
+                </div> 
+            </div>
+        </ng-template>
+        <ng-template let-contrato pTemplate="listItem" emptyMessage="Sem serviços" >
+            <div class="col-12" *ngIf="(contrato.titulo | filtrarContratoTituloPipe: filtroTitulo)
+                && ((contrato.nomeAluno ? contrato.nomeAluno : '') | filtrarContratoIntegrantesPipe: filtroAlunos)
+                && ((contrato.nomeProfessor ? contrato.nomeProfessor : '') | filtrarContratoIntegrantesPipe: filtroProfessores)
+                && (contrato.estado.label | filtrarContratoEstadosPipe: filtroEstado)">
+                <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                    <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                            <div class="text-2xl font-bold text-900">{{ contrato.titulo }}</div>                            
+                            <div class="text-1xl text-900">{{ contrato.valor }}</div>
+                            <div class="flex align-items-center gap-3">
+                                <span class="flex align-items-center gap-2">
+                                    <i class="pi pi-user"></i> <a class="font-semibold">{{ contrato.nomeAluno ? contrato.nomeAluno : 'bugou legal dog' }}</a> <i class="pi pi-briefcase"></i><a [routerLink]="[educatechService.getUsuarioLogado()?.tipo == 'professor' ? '../../meuperfil/professor' : '../../professores/detalhes/' + contrato.id_professor]" class="font-semibold noDecoration">{{ contrato.nomeProfessor ? contrato.nomeProfessor : 'bugou legal dog' }}</a>
+                                    <span class="font-semibold">{{ contrato.especializacao }}</span>
+                                </span>
+                                <div>
+                                    <p-tag [rounded]="true" [value]="contrato.estado.label" [style]="{ 'background': contrato.estado.severidade}"></p-tag>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex div-filtros">
+                            <p-button [severity]="getSeverityBotaoDetalhes(contrato.estado.label)" [rounded]="true"  class="botao-list" [label]="getTextoBotaoDetalhes(contrato.estado.label)" [routerLink]="['../detalhes/' + contrato.id, contrato.estado.label]" ></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

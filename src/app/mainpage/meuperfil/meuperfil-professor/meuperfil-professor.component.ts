@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Professor } from 'src/app/model/professor';
 import { EducatechService } from 'src/app/services/educatech.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { UserNavBarComponent } from '../../../navbar/usernavbar/user-navbar.component';
 
 
 
@@ -36,8 +37,6 @@ export class MeuperfilProfessorComponent{
       this.usuarioInicial = {...user};
       this.selectedImagem = this.usuario.img;
 
-         console.log(this.usuarioInicial.disponibilidade)
-
       if(this.usuarioInicial.disponibilidade.includes("manhã"))
         this.disponibilidade = this.disponibilidade.concat(['manhã']);
       if(this.usuarioInicial.disponibilidade.includes("tarde"))
@@ -50,19 +49,24 @@ export class MeuperfilProfessorComponent{
  
 
   editarform(form: any){
+    let disponibilidades: string[] = [];
+    this.usuarioInicial.disponibilidade.split(',').forEach((el: any) => {
+      disponibilidades.push(el);
+    })
+    this.disponibilidade = disponibilidades;
     if(!this.disableEditar){     
       this.usuario = {...this.usuarioInicial};
     }
     this.disableEditar = !this.disableEditar;
       
   }
-
     editar(f: NgForm){
       const professor: Professor = {
         id: (this.educatechService.getUsuarioLogado()?.id as number),
         nome: f.value.nome,
         email: f.value.email,
         senha: this.usuario.senha,
+        img: this.selectedImagem,
         faculdade: f.value.faculdade,
         especializacao: f.value.especializacao,
         disponibilidade: f.value.disponibilidade.toString(),
@@ -70,8 +74,6 @@ export class MeuperfilProfessorComponent{
         cpf: f.value.cpf,
         avaliacao: this.usuario.avaliacao,
         quantidadeavaliacao: this.usuario.quantidadeavaliacao,
-        img: this.selectedImagem,
-        
       }
       if(JSON.stringify(professor) == JSON.stringify(this.usuarioInicial)){
         this.toastService.clear();
@@ -82,8 +84,10 @@ export class MeuperfilProfessorComponent{
       this.educatechService.editarProfessor(professor).subscribe(val => {
         if(!val)
           this.toastService.show('tc', 'error', 'Erro', 'Erro ao Editar, email já em uso.');
-        else
+        else{
           this.sucesso();
+          this.educatechService.setUserName(professor.nome);
+        }
       });
     }
   

@@ -33,7 +33,7 @@ export class MeuperfilAlunoComponent implements OnInit{
       const user = await this.educatechService.buscarAlunoporID(usuarioLogado.id).toPromise();
       this.usuario = user;
       this.usuarioInicial = {...user};
-      this.dropdown.selectedOption = {name: user?.escolarizacao};
+      this.dropdown.selectedOption = {name: this.usuario.escolarizacao};
       this.disableEditar = true;
     }
   }
@@ -54,9 +54,9 @@ export class MeuperfilAlunoComponent implements OnInit{
   }
 
     editarform(form: any){
+      this.dropdown.selectedOption = {name: this.usuarioInicial.escolarizacao};
       if(!this.disableEditar){     
         this.usuario = {...this.usuarioInicial};
-        console.log(this.usuario.escolarizacao)
       }
       this.disableEditar = !this.disableEditar;
         
@@ -82,8 +82,10 @@ export class MeuperfilAlunoComponent implements OnInit{
       this.educatechService.editarAluno(aluno).subscribe(val => {
         if(!val)
           this.toastService.show('tc', 'error', 'Erro', 'Erro ao Editar, email já em uso.');
-        else
+        else{
           this.sucesso();
+          this.educatechService.setUserName(aluno.nome);
+        }
       });
     }
   

@@ -12,7 +12,13 @@ import { AuthGuard } from "src/app/services/auth-guard-service";
 import { MeuperfilComponent } from "src/app/mainpage/meuperfil/meuperfil.component";
 import { MeuperfilAlunoComponent } from "src/app/mainpage/meuperfil/meuperfil-aluno/meuperfil-aluno.component";
 import { MeuperfilProfessorComponent } from "src/app/mainpage/meuperfil/meuperfil-professor/meuperfil-professor.component";
-import { ListaProfessoresComponent } from "src/app/mainpage/lista-professores/lista-professores.component";
+import { ListaProfessoresComponent } from "src/app/mainpage/professores/lista-professores/lista-professores.component";
+import { ProfessoresComponent } from "src/app/mainpage/professores/professores.component";
+import { DetalhesProfessorComponent } from "src/app/mainpage/professores/detalhes-professor/detalhes-professor.component";
+import { ContratosComponent } from "../mainpage/contratos/contratos.component";
+import { CadastroContratoComponent } from '../mainpage/contratos/cadastro-contrato/cadastro-contrato.component';
+import { ListarContratosComponent } from "../mainpage/contratos/lista-contratos/lista-contratos.component";
+import { DetalhesContratoComponent } from "../mainpage/contratos/detalhes-contrato/detalhes-contrato.component";
 
 
 const appRoutes: Routes = [ 
@@ -31,7 +37,18 @@ const appRoutes: Routes = [
             {path: 'professor', component: MeuperfilProfessorComponent},
             {path: '', redirectTo: '/educatech', pathMatch: 'full'},
         ]},
-        {path: 'professores', component: ListaProfessoresComponent},
+        {path: 'professores', component: ProfessoresComponent, children:[
+            {path: 'lista', component: ListaProfessoresComponent},
+            {path: 'detalhes/:id', component: DetalhesProfessorComponent},
+            {path: '', redirectTo: '/educatech', pathMatch: 'full'},
+        ]},
+        {path: 'servicos', component: ContratosComponent, children:[
+            {path: 'cadastrar/:id/:nome', component: CadastroContratoComponent},
+            {path: 'lista', component: ListarContratosComponent},
+            {path: 'detalhes/:id/:tag', component: DetalhesContratoComponent},
+            {path: '', redirectTo: '/educatech', pathMatch: 'full'},
+        ]},
+
         //model children: {path: 'sexo', component: SexoComponent},
     ]},
     {path: '**', component: NotFoundComponent},
